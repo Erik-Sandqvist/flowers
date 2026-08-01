@@ -1,0 +1,132 @@
+/*
+ * Entrances. Everything starts in its resting position and is displaced by a
+ * class, so if the JS never runs the page is still fully readable.
+ */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(1.6rem);
+  transition:
+    opacity 1000ms cubic-bezier(0.22, 0.85, 0.24, 1),
+    transform 1000ms cubic-bezier(0.22, 0.85, 0.24, 1);
+}
+
+.reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Stagger children of a revealed block without hand-writing ten delays. */
+.reveal-group > * {
+  opacity: 0;
+  transform: translateY(1.2rem);
+  transition:
+    opacity 900ms cubic-bezier(0.22, 0.85, 0.24, 1),
+    transform 900ms cubic-bezier(0.22, 0.85, 0.24, 1);
+  transition-delay: calc(var(--i, 0) * 90ms);
+}
+
+.reveal-group.is-in > * {
+  opacity: 1;
+  transform: none;
+}
+
+/* The photograph wipes open rather than fading — it reads as a reveal. */
+.panel__media {
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 1200ms cubic-bezier(0.22, 0.85, 0.24, 1);
+}
+
+.panel.is-in .panel__media {
+  clip-path: inset(0 0 0 0);
+}
+
+.panel__media img {
+  transform: scale(1.18);
+  transition: transform 1500ms cubic-bezier(0.22, 0.85, 0.24, 1);
+}
+
+.panel.is-in .panel__media img {
+  transform: scale(1.02);
+}
+
+/* Hero title rises word by word from behind a mask. */
+.mask-line {
+  display: block;
+  overflow: hidden;
+}
+
+.mask-line > span {
+  display: block;
+  transform: translateY(105%);
+  transition: transform 1300ms cubic-bezier(0.19, 0.9, 0.22, 1);
+  transition-delay: calc(var(--i, 0) * 110ms + 120ms);
+}
+
+.is-ready .mask-line > span {
+  transform: none;
+}
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(1rem);
+  transition:
+    opacity 1100ms ease calc(var(--i, 0) * 120ms + 500ms),
+    transform 1100ms cubic-bezier(0.22, 0.85, 0.24, 1) calc(var(--i, 0) * 120ms + 500ms);
+}
+
+.is-ready .fade-up {
+  opacity: 1;
+  transform: none;
+}
+
+/* --------------------------------------------------------- reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    transition-delay: 0ms !important;
+  }
+
+  /* Colour still changes between flowers, just without the long cross-fade. */
+  :root {
+    --shift: 0.001ms linear;
+  }
+
+  .reveal,
+  .reveal-group > *,
+  .fade-up {
+    opacity: 1;
+    transform: none;
+  }
+
+  .mask-line > span {
+    transform: none;
+  }
+
+  .panel__media {
+    clip-path: none;
+  }
+
+  .panel__media img,
+  .panel.is-in .panel__media img {
+    transform: none;
+  }
+
+  .hero__media img {
+    animation: none;
+    transform: scale(1.04);
+  }
+
+  .grain {
+    animation: none;
+  }
+}

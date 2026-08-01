@@ -1,0 +1,188 @@
+.panels {
+  position: relative;
+}
+
+.panel {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  align-items: center;
+  gap: clamp(2rem, 5vw, 6rem);
+  grid-template-columns: 1fr 1fr;
+  padding: clamp(4rem, 12vh, 9rem) var(--gutter);
+}
+
+/* Alternate the side the photograph sits on so the scroll has a rhythm. */
+.panel:nth-child(even) .panel__media {
+  order: 2;
+}
+
+.panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(
+    ellipse 70% 55% at var(--bloom-x, 30%) 50%,
+    color-mix(in oklab, var(--accent-deep) 42%, transparent),
+    transparent 70%
+  );
+  opacity: 0.85;
+  transition: background var(--shift);
+}
+
+.panel:nth-child(even)::before {
+  --bloom-x: 70%;
+}
+
+/* ------------------------------------------------------------------ media */
+
+.panel__media {
+  position: relative;
+  /* It is a <figure>, which carries a 40px UA margin that pushes it out of the grid column. */
+  margin: 0;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 2px;
+  background-size: cover;
+  background-position: center;
+  box-shadow:
+    0 2rem 5rem rgba(0, 0, 0, 0.55),
+    0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+/*
+ * The parallax translate lives on this wrapper and the reveal scale lives on
+ * the image, so a transitioned property and a per-frame one never fight over
+ * the same transform.
+ */
+.panel__parallax {
+  position: absolute;
+  inset: -8% 0;
+  will-change: transform;
+}
+
+.panel__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.panel__index {
+  position: absolute;
+  z-index: 2;
+  bottom: 0.06em;
+  left: 0.14em;
+  font-family: var(--display);
+  font-variation-settings: 'opsz' 144, 'WONK' 1;
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  line-height: 0.8;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.55);
+  text-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+
+/* ------------------------------------------------------------------- body */
+
+.panel__body {
+  max-width: 44ch;
+}
+
+.panel__name {
+  font-size: clamp(2.6rem, 6.4vw, 6rem);
+  margin: 0.28em 0 0.16em;
+  color: var(--accent);
+  transition: color var(--shift);
+}
+
+.panel__line {
+  margin-top: 1.6rem;
+  font-family: var(--display);
+  font-variation-settings: 'opsz' 40, 'SOFT' 30;
+  font-size: clamp(1.15rem, 2.1vw, 1.7rem);
+  line-height: 1.32;
+  letter-spacing: -0.01em;
+  max-width: 26ch;
+}
+
+.panel__note {
+  margin-top: 1.3rem;
+  max-width: var(--measure);
+  font-size: clamp(0.88rem, 1.15vw, 0.98rem);
+  color: var(--ink-dim);
+}
+
+.panel__meta {
+  display: grid;
+  gap: 0.9rem;
+  margin: 2.2rem 0 0;
+  padding: 1.4rem 0 0;
+  border-top: 1px solid var(--rule);
+  max-width: 30rem;
+}
+
+.panel__meta div {
+  display: grid;
+  grid-template-columns: 8.5rem 1fr;
+  gap: 1rem;
+  align-items: baseline;
+}
+
+.panel__meta dt {
+  font-size: 0.63rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.panel__meta dd {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--ink);
+}
+
+/* ------------------------------------------------------------- responsive */
+
+@media (max-width: 900px) {
+  .panel {
+    grid-template-columns: 1fr;
+    align-content: center;
+    gap: 2rem;
+  }
+
+  .panel:nth-child(even) .panel__media {
+    order: 0;
+  }
+
+  /*
+   * width:100% keeps the frame flush with the text column. Without it the
+   * aspect-ratio and max-height together shrink the box and it drifts inward,
+   * leaving the photograph and the copy on two different left edges.
+   */
+  .panel__media {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    max-height: 52svh;
+  }
+
+  .panel__body {
+    max-width: none;
+  }
+
+  .panel__index {
+    font-size: 4.5rem;
+    transform: translate(-6%, 22%);
+  }
+
+  .panel__meta div {
+    grid-template-columns: 7rem 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .panel__meta div {
+    grid-template-columns: 1fr;
+    gap: 0.15rem;
+  }
+}

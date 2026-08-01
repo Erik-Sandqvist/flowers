@@ -1,0 +1,220 @@
+@import '@fontsource-variable/fraunces/opsz.css';
+@import '@fontsource-variable/fraunces/opsz-italic.css';
+@import '@fontsource-variable/inter/wght.css';
+
+/*
+ * Registering the theme colours as real <color> properties is what lets the
+ * page bleed from one flower to the next instead of snapping. Without @property
+ * a custom property is just a token swap, and anything built on a gradient
+ * would jump.
+ */
+@property --accent {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #ef2a30;
+}
+@property --accent-soft {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #f5a0a3;
+}
+@property --accent-deep {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #8a0d12;
+}
+@property --bg {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #0d0707;
+}
+@property --bg-lift {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #1f1010;
+}
+
+:root {
+  --accent: #ef2a30;
+  --accent-soft: #f5a0a3;
+  --accent-deep: #8a0d12;
+  --bg: #0d0707;
+  --bg-lift: #1f1010;
+
+  --ink: #f4efe9;
+  --ink-dim: rgba(244, 239, 233, 0.62);
+  --ink-faint: rgba(244, 239, 233, 0.34);
+  --rule: rgba(244, 239, 233, 0.14);
+
+  --display: 'Fraunces Variable', 'Iowan Old Style', Georgia, serif;
+  --sans: 'Inter Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --shift: 1100ms cubic-bezier(0.33, 0.9, 0.29, 1);
+  --gutter: clamp(1.25rem, 5vw, 6rem);
+  --measure: 34ch;
+
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  transition: background-color var(--shift);
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+::selection {
+  background: var(--accent);
+  color: #0b0b0b;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ------------------------------------------------------------- typography - */
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 400;
+  font-variation-settings: 'opsz' 144, 'SOFT' 20;
+  line-height: 0.94;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+p {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+.eyebrow {
+  font-family: var(--sans);
+  font-size: clamp(0.62rem, 0.9vw, 0.74rem);
+  font-weight: 500;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.latin {
+  font-family: var(--display);
+  font-style: italic;
+  font-variation-settings: 'opsz' 24;
+  font-size: clamp(1rem, 1.6vw, 1.28rem);
+  color: var(--accent-soft);
+  letter-spacing: 0.01em;
+  transition: color var(--shift);
+}
+
+/* ------------------------------------------------------------- overlays --- */
+
+/*
+ * A little analogue noise over everything. Cheap, and it stops the large flat
+ * darks from banding on wide gamut screens.
+ */
+.grain {
+  position: fixed;
+  inset: -50%;
+  z-index: 9000;
+  pointer-events: none;
+  opacity: 0.4;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.42'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+  will-change: transform;
+  animation: grain-drift 7s steps(6) infinite;
+}
+
+@keyframes grain-drift {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-4%, 2%); }
+  40% { transform: translate(3%, -3%); }
+  60% { transform: translate(-2%, -2%); }
+  80% { transform: translate(2%, 3%); }
+  100% { transform: translate(0, 0); }
+}
+
+.cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 46rem;
+  height: 46rem;
+  margin: -23rem 0 0 -23rem;
+  pointer-events: none;
+  opacity: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in oklab, var(--accent) 26%, transparent) 0%, transparent 62%);
+  transition: opacity 700ms ease, background var(--shift);
+  will-change: transform;
+}
+
+.cursor-glow.is-live {
+  opacity: 1;
+}
+
+.scroll-progress {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 8000;
+  height: 2px;
+  pointer-events: none;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.scroll-progress span {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--accent);
+  box-shadow: 0 0 14px var(--accent);
+  transition: background-color var(--shift);
+}
+
+@media (pointer: coarse) {
+  .cursor-glow {
+    display: none;
+  }
+}

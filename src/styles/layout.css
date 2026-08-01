@@ -1,0 +1,322 @@
+/* ------------------------------------------------------------------ hero - */
+
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  padding: clamp(1.5rem, 4vh, 3rem) var(--gutter);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+
+.hero__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform-origin: 58% 45%;
+  animation: ken-burns 28s ease-in-out infinite alternate;
+}
+
+@keyframes ken-burns {
+  from { transform: scale(1.06) translate3d(0, 0, 0); }
+  to { transform: scale(1.2) translate3d(-1.5%, -1.5%, 0); }
+}
+
+/* Two washes: one to seat the type, one to tie the photo to the theme colour. */
+.hero__media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.18) 38%, var(--bg) 96%),
+    linear-gradient(115deg, color-mix(in oklab, var(--accent-deep) 55%, transparent), transparent 62%);
+  transition: background var(--shift);
+}
+
+.hero__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.hero__mark {
+  font-family: var(--display);
+  font-variation-settings: 'opsz' 20, 'SOFT' 40;
+  font-size: 1.05rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.hero__body {
+  align-self: end;
+}
+
+.hero h1 {
+  font-size: clamp(4.5rem, 19vw, 20rem);
+  font-variation-settings: 'opsz' 144, 'SOFT' 0, 'WONK' 1;
+  letter-spacing: -0.045em;
+  margin: 0.12em 0 0;
+  mix-blend-mode: exclusion;
+}
+
+.hero__lede {
+  margin-top: 1.6rem;
+  max-width: 38ch;
+  font-size: clamp(1rem, 1.5vw, 1.22rem);
+  color: var(--ink-dim);
+}
+
+.hero__cue {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-top: clamp(2rem, 6vh, 4rem);
+  font-size: 0.7rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.hero__cue::after {
+  content: '';
+  width: 4.5rem;
+  height: 1px;
+  background: linear-gradient(to right, var(--accent), transparent);
+  animation: cue-slide 2.6s ease-in-out infinite;
+}
+
+@keyframes cue-slide {
+  0%, 100% { transform: translateX(0); opacity: 0.5; }
+  50% { transform: translateX(0.6rem); opacity: 1; }
+}
+
+/* ------------------------------------------------------------------ rail - */
+
+.rail {
+  position: fixed;
+  top: 50%;
+  right: clamp(0.7rem, 1.6vw, 1.6rem);
+  z-index: 7000;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  opacity: 0;
+  transition: opacity 600ms ease;
+}
+
+.rail.is-live {
+  opacity: 1;
+}
+
+.rail button {
+  display: block;
+  width: 26px;
+  height: 20px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.rail button::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 12px;
+  height: 2px;
+  transform: translateY(-50%);
+  border-radius: 2px;
+  background: var(--dot);
+  opacity: 0.35;
+  transition: width 420ms cubic-bezier(0.2, 0.9, 0.2, 1), opacity 420ms ease;
+}
+
+.rail button:hover::before {
+  opacity: 0.8;
+  width: 20px;
+}
+
+.rail button[aria-current='true']::before {
+  width: 26px;
+  opacity: 1;
+  box-shadow: 0 0 12px var(--dot);
+}
+
+.rail__label {
+  position: absolute;
+  right: 34px;
+  top: 50%;
+  transform: translateY(-50%) translateX(6px);
+  white-space: nowrap;
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-dim);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 260ms ease, transform 260ms ease;
+}
+
+.rail button:hover .rail__label {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+/* ----------------------------------------------------------- palette bar - */
+
+.palette {
+  padding: clamp(5rem, 14vh, 10rem) var(--gutter) clamp(4rem, 10vh, 7rem);
+  background: linear-gradient(to bottom, transparent, var(--bg-lift));
+  transition: background var(--shift);
+}
+
+.palette__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.palette h2 {
+  font-size: clamp(2rem, 5.5vw, 4.5rem);
+}
+
+.palette__note {
+  max-width: 30ch;
+  font-size: 0.92rem;
+  color: var(--ink-dim);
+}
+
+.palette__bar {
+  display: flex;
+  height: clamp(9rem, 22vh, 15rem);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.palette__swatch {
+  flex: 1 1 0;
+  position: relative;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  background: var(--swatch);
+  transition: flex-grow 620ms cubic-bezier(0.2, 0.9, 0.2, 1), filter 400ms ease;
+  filter: saturate(0.92);
+}
+
+.palette__swatch:hover,
+.palette__swatch:focus-visible {
+  flex-grow: 2.4;
+  filter: saturate(1.1);
+  outline: none;
+}
+
+.palette__swatch span {
+  position: absolute;
+  left: 50%;
+  bottom: 1rem;
+  transform: translateX(-50%) rotate(180deg);
+  writing-mode: vertical-rl;
+  font-size: 0.64rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.66);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* -------------------------------------------------------------- colophon - */
+
+.colophon {
+  padding: clamp(3rem, 8vh, 6rem) var(--gutter) clamp(3rem, 8vh, 5rem);
+  border-top: 1px solid var(--rule);
+}
+
+.colophon__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: clamp(1.5rem, 3vw, 3rem);
+}
+
+.colophon h2 {
+  font-size: clamp(1.5rem, 3vw, 2.4rem);
+  margin-bottom: 1.2rem;
+}
+
+.colophon p {
+  font-size: 0.86rem;
+  color: var(--ink-dim);
+  max-width: 42ch;
+}
+
+.credits {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  columns: 2;
+  column-gap: 2rem;
+  font-size: 0.74rem;
+  line-height: 1.5;
+  color: var(--ink-faint);
+}
+
+.credits li {
+  break-inside: avoid;
+  margin-bottom: 0.7rem;
+}
+
+.credits b {
+  display: block;
+  font-weight: 500;
+  color: var(--ink-dim);
+}
+
+.credits a {
+  color: inherit;
+  text-decoration-color: var(--ink-faint);
+  text-underline-offset: 2px;
+}
+
+.credits a:hover {
+  color: var(--accent-soft);
+}
+
+.colophon__foot {
+  margin-top: clamp(2.5rem, 6vh, 4rem);
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+@media (max-width: 720px) {
+  .credits {
+    columns: 1;
+  }
+  .rail {
+    display: none;
+  }
+}
