@@ -165,9 +165,18 @@ html:not(.is-ready) .hero__flora .flora__eye {
 /* ------------------------------------------------------------- responsive - */
 
 @media (max-width: 900px) {
-  /* Narrower column, so the flora pulls back to stay clear of the copy. */
+  /*
+   * Single column here, so there is no photo side to hide behind. Clip the
+   * layer to the band the photograph occupies instead, which keeps the vines
+   * on the print and off the heading.
+   */
+  .panel__flora {
+    top: 8%;
+    bottom: 37%;
+  }
+
   .flora {
-    width: clamp(130px, 42vw, 240px);
+    width: clamp(120px, 34vw, 200px);
   }
 
   .panel.is-in .flora__petal {
