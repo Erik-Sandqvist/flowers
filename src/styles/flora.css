@@ -1,0 +1,191 @@
+/*
+ * The petal layer. Sits above the panel's colour wash and below the photograph
+ * and the copy, so it decorates the empty outer margins without ever competing
+ * with the content.
+ */
+
+/* Above the photograph (z-index 1), so the vines lie across the print. */
+.panel__flora {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.panel__media,
+.panel__body {
+  position: relative;
+  z-index: 1;
+}
+
+.flora {
+  position: absolute;
+  top: 50%;
+  width: clamp(190px, 27vw, 460px);
+  height: auto;
+  transform: translateY(-50%);
+}
+
+.flora--left {
+  left: 0;
+}
+
+/* Mirrored rather than drawn twice, so both sides open away from their edge. */
+.flora--right {
+  right: 0;
+  transform: translateY(-50%) scaleX(-1);
+}
+
+/* The stem draws itself in: full dash offset closed, zero offset open. */
+.flora__stem {
+  stroke: var(--accent-soft);
+  fill: none;
+  stroke-linecap: round;
+  opacity: 0;
+  stroke-dasharray: var(--len);
+  stroke-dashoffset: var(--len);
+  transition:
+    stroke-dashoffset 1800ms cubic-bezier(0.22, 0.75, 0.2, 1),
+    opacity 700ms ease;
+  transition-delay: calc(var(--d, 0) * 1ms);
+}
+
+.flora__petal {
+  fill: var(--accent);
+  opacity: 0;
+  transition:
+    opacity 900ms ease,
+    transform 1400ms cubic-bezier(0.16, 0.9, 0.24, 1);
+  transition-delay: calc(var(--d, 0) * 1ms);
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+}
+
+.flora__petal--soft {
+  fill: var(--accent-soft);
+}
+
+.flora__petal--leaf,
+.flora__petal--bud {
+  fill: var(--accent-soft);
+}
+
+.flora__eye {
+  fill: var(--accent-soft);
+  opacity: 0;
+  transition: opacity 700ms ease calc(var(--d, 0) * 1ms);
+}
+
+/*
+ * Resting state is the bloomed state. The closed state is what gets added, so a
+ * panel that never receives .is-in still shows its flora rather than nothing.
+ */
+.panel:not(.is-in) .flora__petal,
+.panel:not(.is-in) .flora__eye {
+  transform: scale(0.05) rotate(-24deg);
+  opacity: 0;
+}
+
+/* Reading over a photograph, not flat ground, so these carry more weight. */
+.panel.is-in .flora__stem {
+  opacity: 0.5;
+  stroke-dashoffset: 0;
+}
+
+.panel.is-in .flora__petal {
+  opacity: 0.42;
+  transform: scale(1) rotate(0deg);
+}
+
+.panel.is-in .flora__petal--soft,
+.panel.is-in .flora__petal--leaf,
+.panel.is-in .flora__petal--bud {
+  opacity: 0.48;
+}
+
+.panel.is-in .flora__petal--drift {
+  opacity: 0.5;
+}
+
+.panel.is-in .flora__eye {
+  opacity: 0.6;
+}
+
+/* The blossoms read as one object, so they scale as a unit too. */
+.flora__unit {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+}
+
+/* ------------------------------------------------------------------- hero - */
+
+.hero__flora {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Over a photograph rather than a flat ground, so cream reads better than accent. */
+.hero__flora .flora__petal,
+.hero__flora .flora__eye {
+  fill: #f6efe2;
+}
+
+.hero__flora .flora__stem {
+  stroke: #f6efe2;
+}
+
+.is-ready .hero__flora .flora__stem {
+  opacity: 0.26;
+  stroke-dashoffset: 0;
+}
+
+.is-ready .hero__flora .flora__petal {
+  opacity: 0.2;
+  transform: scale(1) rotate(0deg);
+}
+
+.is-ready .hero__flora .flora__petal--drift {
+  opacity: 0.28;
+}
+
+.is-ready .hero__flora .flora__eye {
+  opacity: 0.3;
+}
+
+html:not(.is-ready) .hero__flora .flora__petal,
+html:not(.is-ready) .hero__flora .flora__eye {
+  transform: scale(0.05) rotate(-24deg);
+  opacity: 0;
+}
+
+/* ------------------------------------------------------------- responsive - */
+
+@media (max-width: 900px) {
+  /* Narrower column, so the flora pulls back to stay clear of the copy. */
+  .flora {
+    width: clamp(130px, 42vw, 240px);
+  }
+
+  .panel.is-in .flora__petal {
+    opacity: 0.32;
+  }
+
+  .panel.is-in .flora__petal--soft,
+  .panel.is-in .flora__petal--leaf,
+  .panel.is-in .flora__petal--bud {
+    opacity: 0.36;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel:not(.is-in) .flora__petal,
+  .panel:not(.is-in) .flora__eye,
+  html:not(.is-ready) .hero__flora .flora__petal,
+  html:not(.is-ready) .hero__flora .flora__eye {
+    transform: none;
+  }
+}

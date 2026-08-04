@@ -4,6 +4,12 @@
 
 .panel {
   position: relative;
+  /*
+   * Contain the panel's own layering. Without this the flora stack leaks into
+   * the root stacking context, where .panel__media shares z-index 1 with the
+   * cursor glow and — coming later in the DOM — paints over it.
+   */
+  isolation: isolate;
   min-height: 100svh;
   display: grid;
   align-items: center;

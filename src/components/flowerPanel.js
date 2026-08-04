@@ -1,10 +1,12 @@
 import { esc, ordinal } from '../utils/dom.js';
+import { renderFlora } from './flora.js';
 
 function panel(flower, i) {
   const n = ordinal(i);
 
   return `
     <section class="panel" id="${esc(flower.slug)}" data-slug="${esc(flower.slug)}">
+      ${renderFlora(i + 1, i % 2 === 0 ? 'left' : 'right')}
       <figure class="panel__media" style="background-image:url('${flower.placeholder}')">
         <div class="panel__parallax">
           <img

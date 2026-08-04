@@ -1,4 +1,5 @@
 import { esc } from '../utils/dom.js';
+import { renderHeroFlora } from './flora.js';
 
 export function renderHero(flowers, heroSlug) {
   const hero = flowers.find((f) => f.slug === heroSlug) ?? flowers[0];
@@ -15,6 +16,8 @@ export function renderHero(flowers, heroSlug) {
           height="1240"
         />
       </div>
+
+      ${renderHeroFlora(41)}
 
       <div class="hero__top">
         <span class="hero__mark">Bloom</span>
