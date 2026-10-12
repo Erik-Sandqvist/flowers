@@ -186,8 +186,8 @@ async function main() {
       name: flower.name,
       latin: flower.latin,
       ...COPY[flower.slug],
-      image: `/flowers/${panelFile}`,
-      hero: heroFile ? `/flowers/${heroFile}` : null,
+      image: `/flowers/flowers/${panelFile}`,
+      hero: heroFile ? `/flowers/flowers/${heroFile}` : null,
       placeholder,
       palette,
       credit: {
