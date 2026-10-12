@@ -12,7 +12,7 @@ export const FLOWERS = [
     "season": "Late spring – midsummer",
     "origin": "Europe, North Africa, temperate Asia",
     "meaning": "Remembrance, sleep, consolation",
-    "image": "/flowers/flowers/corn-poppy.webp",
+    "image": "/flowers/public/flowers/corn-poppy.webp",
     "hero": null,
     "placeholder": "data:image/webp;base64,UklGRpwAAABXRUJQVlA4IJAAAAAwBQCdASoYAB4APu1qq1CppaOiqAqpMB2JbACsLzcA6BUaCj68u2dybILjhCJGR9ubAAD+LOmckkZZyIsvnV3fnaQPFw0ABCqDQiSABcTIAyHGsNeOBFLEzS5Hl4Lz5PVz486LZY0lCmF3FYbTamRBNfew8f3vvVpF7ABZhDuEjA2+yCPnXCyqWMhvHhsg7AA=",
     "palette": {
@@ -42,7 +42,7 @@ export const FLOWERS = [
     "season": "Spring",
     "origin": "Eastern Mediterranean, south-west Asia",
     "meaning": "Radiance, charm",
-    "image": "/flowers/flowers/persian-buttercup.webp",
+    "image": "/flowers/public/flowers/persian-buttercup.webp",
     "hero": null,
     "placeholder": "data:image/webp;base64,UklGRooAAABXRUJQVlA4IH4AAACwBACdASoYAB4APu1ip02ppaOiMAgBMB2JZgCdMoABC1C/kjvzVMm7OYxrs+GAAMWtjC2HnDcQd2OPr7TyZRz/8GJvrb6XxFT5VY0CZz4rU/kcK3Dv4X1cqWBIYHFG4dYiMkyNS4wASFfSVqHUVe1TZlqvZgke1YNBgvSAAAA=",
     "palette": {
@@ -72,7 +72,7 @@ export const FLOWERS = [
     "season": "Mid – late summer",
     "origin": "North America",
     "meaning": "Adoration, constancy",
-    "image": "/flowers/flowers/sunflower.webp",
+    "image": "/flowers/public/flowers/sunflower.webp",
     "hero": null,
     "placeholder": "data:image/webp;base64,UklGRsYAAABXRUJQVlA4ILoAAAAQBwCdASoYAB4APu1oqk2ppiQiMAgBMB2JbACdMxyEUL60O9jgAAK98O89yGC/Hdm7RcxnicyJ+7K04ztND7AfgAD+5FkcPDhRGZ7opzL1v9PtNDfxu6/jXVT9Xck720ZBThrFH8OhaOwb84Dt412rNju4UnqJqA7JpEE/D87gByJICN7xEqGDCjl57k66QVhKb9DfZXHuVGDgwwf6LcyNlvw4q79J/iDPLmbczS9Ha0xKcoitafVAAAA=",
     "palette": {
@@ -102,7 +102,7 @@ export const FLOWERS = [
     "season": "Early spring, before the leaves",
     "origin": "Garden hybrid; parent species from China",
     "meaning": "Dignity, perseverance",
-    "image": "/flowers/flowers/magnolia.webp",
+    "image": "/flowers/public/flowers/magnolia.webp",
     "hero": null,
     "placeholder": "data:image/webp;base64,UklGRqgAAABXRUJQVlA4IJwAAACQBQCdASoYAB4APu1mq04ppaQiMAgBMB2JQBZwA0ZjeSIVpty/v9+HA+F8bDlJQ/OJi7lcAAD+v3300J4GHZNc4IfQEs+JfET1VQYhFcICqMBheoOvgR/g8eJxyQxbj7HY9EZ4xHnRUBU3aB1YpC37LEAUt2qszXCwSie1IJ1Lx1FYJiPBXbuj2jvgbP+3YasSfkQon5Z7wsq6AAA=",
     "palette": {
@@ -132,7 +132,7 @@ export const FLOWERS = [
     "season": "Spring, one to two weeks",
     "origin": "Japan, Korea, China",
     "meaning": "Transience, renewal",
-    "image": "/flowers/flowers/cherry-blossom.webp",
+    "image": "/flowers/public/flowers/cherry-blossom.webp",
     "hero": null,
     "placeholder": "data:image/webp;base64,UklGRpQAAABXRUJQVlA4IIgAAAAwBQCdASoYAB4APuFgqU2opaQiMAwBEBwJQBfJBC2RNuI0UTJbkto136oEJMpBTHX6AAD+6XurJjt8mCyJwIyFfuic80J5O9DU0yLyuxgQxIwaHnNkkO7iX0YXH86D42pyIsM5VpnX5R+aAX6LWTzSPe7X6ru8PJqbsln+3Gn9i6yl+cc2AAAA",
     "palette": {
@@ -162,7 +162,7 @@ export const FLOWERS = [
     "season": "Autumn – spring",
     "origin": "Cape fynbos, South Africa",
     "meaning": "Courage, transformation",
-    "image": "/flowers/flowers/king-protea.webp",
+    "image": "/flowers/public/flowers/king-protea.webp",
     "hero": null,
     "placeholder": "data:image/webp;base64,UklGRpwAAABXRUJQVlA4IJAAAACwBQCdASoYAB4APu1kqU2ppaOiMAgBMB2JYgCdMt16ADgiF1W7D+sLt13WlVzwPo8E62D3lqAA/ukeDRfasfE+NEnLELzl756IiZqSDWWoH63e//RQd0WWTAZrYFXU7NeD8L0IVnW6eJsVrof1hnsIrF6gOKjTK6iTuJK/AZOHnSpjWsbtDL1zT9uVoobAAAA=",
     "palette": {
@@ -192,7 +192,7 @@ export const FLOWERS = [
     "season": "Mid – late summer",
     "origin": "Mediterranean uplands",
     "meaning": "Calm, devotion",
-    "image": "/flowers/flowers/lavender.webp",
+    "image": "/flowers/public/flowers/lavender.webp",
     "hero": null,
     "placeholder": "data:image/webp;base64,UklGRpoAAABXRUJQVlA4II4AAADQBQCdASoYAB4APulcqE2pJKQiN/VYASAdCWgAnTKDMHAY+Nyjn8gB6dJ73FbDMdYxtsjsxr7QAM1kBbbmsjlC6Is9zec66td6CrapohcRskrOx7/YX0eiEVwAL1xu5eaaFIgP9GYaSegNdK766o1zkNuqSCO7AP1NeR266ph0Lk8jlnq0UhDOqklpAAAA",
     "palette": {
@@ -222,7 +222,7 @@ export const FLOWERS = [
     "season": "Late spring",
     "origin": "Southern and central Europe",
     "meaning": "Wisdom, hope, faith",
-    "image": "/flowers/flowers/bearded-iris.webp",
+    "image": "/flowers/public/flowers/bearded-iris.webp",
     "hero": null,
     "placeholder": "data:image/webp;base64,UklGRqIAAABXRUJQVlA4IJYAAADQBQCdASoYAB4APu1ur1KppiQiqAgBMB2JagCdMoPM5n9B5m+/n52TKA4mpHgcpJzhPr4BAz5MAP2jiS9UxrI7JUYoyFD6yAkEh/17my3YZxV8p2fAJK1XdX2ZDDkYBAMt8YmLDHH8QE93kBbeOIN1nBa0of7YE4VV+2pYqpjlZIKfkOZj3iooqILCY1qiakHatOutAAA=",
     "palette": {
@@ -252,8 +252,8 @@ export const FLOWERS = [
     "season": "Summer",
     "origin": "Europe, naturalised widely",
     "meaning": "Hope, delicacy",
-    "image": "/flowers/flowers/cornflower.webp",
-    "hero": "/flowers/flowers/cornflower-hero.webp",
+    "image": "/flowers/public/flowers/cornflower.webp",
+    "hero": "/flowers/public/flowers/cornflower-hero.webp",
     "placeholder": "data:image/webp;base64,UklGRpwAAABXRUJQVlA4IJAAAACwBACdASoYAB4APu1oq08ppiOiKA1RMB2JbACdMy/Ejm+j1kmpwjwJvaPL7x0gAP4VCX9dRRFz/sO0gK83rEp/xb55N/dHtVnoRuyGbxlAxumjoqbrsXTrNmLjZYYfqKy4NG9I5uo1H3PdNJv+TAj0OPRnVra5v+V+jE/wVj/sUgwJ3vCtthDgLPPv2fimAAA=",
     "palette": {
       "accent": "#588dee",
@@ -282,7 +282,7 @@ export const FLOWERS = [
     "season": "Summer",
     "origin": "Europe, North Africa, the Middle East",
     "meaning": "Purity, rebirth",
-    "image": "/flowers/flowers/water-lily.webp",
+    "image": "/flowers/public/flowers/water-lily.webp",
     "hero": null,
     "placeholder": "data:image/webp;base64,UklGRqYAAABXRUJQVlA4IJoAAADwBACdASoYAB4APu1kqU2ppaQiMAgBMB2JaAC7Mt8CD54hyNE+9e0G2BluJ9UlYkgA2zdhIyzUvlUp6wsCmqlWCcGPIF0oIPdvmQB907jxV7NpPG2MmH2EzsaEqPkxGZKh6aPj9h+TJLCWqG48Nr59zZBn03116bS2dpN5krOa7YrFWlAVhVYFlJe7pcmGLk9NVmX9TVxHggAA",
     "palette": {

@@ -1,7 +1,3 @@
-@import '@fontsource-variable/fraunces/opsz.css';
-@import '@fontsource-variable/fraunces/opsz-italic.css';
-@import '@fontsource-variable/inter/wght.css';
-
 /*
  * Registering the theme colours as real <color> properties is what lets the
  * page bleed from one flower to the next instead of snapping. Without @property
