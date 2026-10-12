@@ -1,9 +1,3 @@
-import './styles/base.css';
-import './styles/layout.css';
-import './styles/flower.css';
-import './styles/flora.css';
-import './styles/motion.css';
-
 import { FLOWERS, HERO_SLUG } from './data/flowers.js';
 import { renderHero } from './components/hero.js';
 import { renderPanels } from './components/flowerPanel.js';
